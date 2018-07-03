@@ -5,100 +5,95 @@ import './TableComponent.css';
 
 class TableComponent extends Component {
 
-    state = { 
-        tableHead : [],
-        tableData : []
+    componentWillMount() {
+       let state = {
+            tableHead: [
+                {
+                    "company": "MOBILDATA",
+                    "address": "Ironton, Marshall Islands",
+                    "name": "Sargent",
+                    "email": "sargentvega@mobildata.com",
+                    "some": "something"
+                },
+                {
+                    "company": "XUMONK",
+                    "address": "Ilchester, Maine",
+                    "name": "Martinez",
+                    "email": "martinezvega@xumonk.com",
+                    "some": "something"
+                },
+                {
+                    "company": "MEDIOT",
+                    "address": "Berwind, California",
+                    "name": "Harrison",
+                    "email": "harrisonvega@mediot.com",
+                    "some": "something"
+                },
+                {
+                    "company": "SNOWPOKE",
+                    "address": "Brenton, Montana",
+                    "name": "Rush",
+                    "email": "rushvega@snowpoke.com",
+                    "some": "something"
+                }
+            ],
+            tableData: []
+        }
+
+        let keyName = state.tableHead;
+        const datavalue = [];
+        keyName.map((groupItem, key) => {
+            return (
+                Object.keys(groupItem).map((item) => {
+                    if (!(inArray(keyName, item))) {
+                        keyName.push(item);
+                    }
+
+                })
+
+            )
+        });
+        this.setState({ tableHead: keyName, tableData: datavalue });
+
     }
-
-    // componentWillMount() {
-    //    let state = {
-    //         tableHead: [
-    //             {
-    //                 "company": "MOBILDATA",
-    //                 "address": "Ironton, Marshall Islands",
-    //                 "name": "Sargent",
-    //                 "email": "sargentvega@mobildata.com",
-    //                 "some": "something"
-    //             },
-    //             {
-    //                 "company": "XUMONK",
-    //                 "address": "Ilchester, Maine",
-    //                 "name": "Martinez",
-    //                 "email": "martinezvega@xumonk.com",
-    //                 "some": "something"
-    //             },
-    //             {
-    //                 "company": "MEDIOT",
-    //                 "address": "Berwind, California",
-    //                 "name": "Harrison",
-    //                 "email": "harrisonvega@mediot.com",
-    //                 "some": "something"
-    //             },
-    //             {
-    //                 "company": "SNOWPOKE",
-    //                 "address": "Brenton, Montana",
-    //                 "name": "Rush",
-    //                 "email": "rushvega@snowpoke.com",
-    //                 "some": "something"
-    //             }
-    //         ],
-    //         tableData: []
-    //     }
-
-    //     let keyName = state.tableHead;
-    //     const datavalue = [];
-    //     keyName.map((groupItem, key) => {
-    //         return (
-    //             Object.keys(groupItem).map((item) => {
-    //                 if (!(inArray(keyName, item))) {
-    //                     keyName.push(item);
-    //                 }
-
-    //             })
-
-    //         )
-    //     });
-    //     this.setState({ tableHead: keyName, tableData: datavalue });
-
-    // }
     render() {
 
         axios.get('http://www.json-generator.com/api/json/get/cfSBuJGEOa?indent=2')
             .then(response => {
                 //console.log(response.data);
                 let keyName = [];
-                // const datavalue = [];
-                // let temp = [
-                //     {
-                //         "company": "MOBILDATA",
-                //         "address": "Ironton, Marshall Islands",
-                //         "name": "Sargent",
-                //         "email": "sargentvega@mobildata.com",
-                //         "some": "something"
-                //     },
-                //     {
-                //         "company": "XUMONK",
-                //         "address": "Ilchester, Maine",
-                //         "name": "Martinez",
-                //         "email": "martinezvega@xumonk.com",
-                //         "some": "something"
-                //     },
-                //     {
-                //         "company": "MEDIOT",
-                //         "address": "Berwind, California",
-                //         "name": "Harrison",
-                //         "email": "harrisonvega@mediot.com",
-                //         "some": "something"
-                //     },
-                //     {
-                //         "company": "SNOWPOKE",
-                //         "address": "Brenton, Montana",
-                //         "name": "Rush",
-                //         "email": "rushvega@snowpoke.com",
-                //         "some": "something"
-                //     }
-                // ]
-                response.data.map((groupItem, key) => {
+                const datavalue = [];
+                let temp = [
+                    {
+                        "company": "MOBILDATA",
+                        "address": "Ironton, Marshall Islands",
+                        "name": "Sargent",
+                        "email": "sargentvega@mobildata.com",
+                        "some": "something"
+                    },
+                    {
+                        "company": "XUMONK",
+                        "address": "Ilchester, Maine",
+                        "name": "Martinez",
+                        "email": "martinezvega@xumonk.com",
+                        "some": "something"
+                    },
+                    {
+                        "company": "MEDIOT",
+                        "address": "Berwind, California",
+                        "name": "Harrison",
+                        "email": "harrisonvega@mediot.com",
+                        "some": "something"
+                    },
+                    {
+                        "company": "SNOWPOKE",
+                        "address": "Brenton, Montana",
+                        "name": "Rush",
+                        "email": "rushvega@snowpoke.com",
+                        "some": "something"
+                    }
+                ]
+                temp.map((groupItem, key) => {
                     return (
                         Object.keys(groupItem).map((item) => {
                             if (!(inArray(keyName, item))) {
@@ -109,15 +104,13 @@ class TableComponent extends Component {
 
                     )
                 });
-                const datavalue = [];
-                response.data.map((data, i) => {
+
+                temp.map((data, i) => {
                     datavalue.push(data);
                 })
                 //console.log(datavalue);
 
                 this.setState({ tableHead: keyName, tableData: datavalue });
-                console.log(this.state.tableData);
-                console.log(this.state.tableHead);
             });
 
         return (
